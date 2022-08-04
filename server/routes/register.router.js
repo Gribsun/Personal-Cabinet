@@ -23,17 +23,25 @@ router.route("/").post(async (req, res) => {
             },
         });
 
-        const newUser = await User.create({
-            userName: name,
-            email: email.toLowerCase(),
-            password: hashedPassword,
-        });
+        if (checkUserEmail) {
+            const message = 'Пользователь с таким email существует';
+            res.json({ message });
+        } else if (checkUserName) {
+            const message = 'Пользователь с таким именем существует';
+            res.json({ message });
+        } else {
+            const newUser = await User.create({
+                userName: name,
+                email: email.toLowerCase(),
+                password: hashedPassword,
+            });
 
-        req.session.userId = newUser.id;
-        req.session.userName = newUser.userName;
+            req.session.userId = newUser.id;
+            req.session.userName = newUser.userName;
 
-        const userInfo = [newUser.id, newUser.name, newUser.email];
-        res.json({ userInfo });
+            const userInfo = [newUser.id, newUser.name, newUser.email];
+            res.json({ userInfo });
+        }
 
     } catch (error) {
         console.log(error);

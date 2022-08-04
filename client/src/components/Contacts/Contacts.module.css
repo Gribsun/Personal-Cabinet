@@ -1,0 +1,41 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formAddContact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+}
+
+.formButton {
+    width: 150px;
+    height: 50px;
+}
+
+.inputAddContact {
+    border: 1px solid black;
+    width: 200px;
+    height: 30px;
+}
+
+.list {
+    max-width: 1440px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.oneElem {
+    width: 200px;
+    height: 50px;
+    font-size: 24px;
+    margin: 10px;
+    text-align: center;
+}

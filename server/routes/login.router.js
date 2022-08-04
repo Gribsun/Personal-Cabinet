@@ -17,14 +17,14 @@ router
             })
 
             if (!user) {
-                const message = 'User not found!'
+                const message = 'Пользователь не найден'
                 res.json({ message });
             }
 
             const isValidPass = await bcrypt.compare(password, user.password)
 
             if (!isValidPass) {
-                const message = 'Wrong password!';
+                const message = 'Неверный пароль';
                 res.json({ message });
             }
 

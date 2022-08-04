@@ -1,23 +1,23 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import { userReducer } from "./reducers/user.reducer";
+import { contactsReducer } from "./reducers/contacts.reducer";
 // import { authReducer } from "./reducers/auth.reducer";
 
 const initState = {
-    user: {
+    contacts: {
         sLoading: false,
         value: [],
         error: null,
     },
-    auth: {
-        sLoading: false,
-        value: [],
-        error: null,
-    },
+    // auth: {
+    //     sLoading: false,
+    //     value: [],
+    //     error: null,
+    // },
 };
 
 const store = configureStore({
     reducer: {
-        // user: userReducer,
+        contacts: contactsReducer,
         // auth: authReducer,
     },
 });

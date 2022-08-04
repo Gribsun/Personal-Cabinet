@@ -9,6 +9,7 @@ const app = express();
 const registerRouter = require("./routes/register.router");
 const loginRouter = require("./routes/login.router");
 const logoutRouter = require("./routes/logout.router");
+const contactsRouter = require("./routes/contacts.router");
 
 app.use('/static', express.static(__dirname + '/public'));
 
@@ -45,6 +46,7 @@ app.use(express.json());
 app.use("/registration", registerRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
+app.use("/contacts", contactsRouter);
 
 app.listen(PORT, async () => {
     try {

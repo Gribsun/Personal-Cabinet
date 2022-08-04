@@ -31,13 +31,16 @@ function Authentication() {
     }
 
     return (
-        <form onSubmit={(event) => logHandler(event)} className={style.loginForm}>
-            <input type="text" value={email} onChange={(event) => {setEmail(event.target.value);}} required className={style.input} placeholder='email'/>
-            <input type="password" value={password} onChange={(event) => {setPassword(event.target.value);}} required className={style.input} placeholder='password'/>
-            <button type="submit" className={style.button}>
-                LOGIN
-            </button>
-        </form>
+        <>
+            {statusInfo ? <p className="info">{statusInfo}</p> : null}
+            <form onSubmit={(event) => logHandler(event)} className={style.loginForm}>
+                <input type="text" value={email} onChange={(event) => {setEmail(event.target.value);}} required className={style.input} placeholder='email'/>
+                <input type="password" value={password} onChange={(event) => {setPassword(event.target.value);}} required className={style.input} placeholder='password'/>
+                <button type="submit" className={style.button}>
+                    LOGIN
+                </button>
+            </form>
+        </>
     );
 }
 

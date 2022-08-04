@@ -32,14 +32,17 @@ function Registration() {
     }
 
     return (
-        <form onSubmit={(event) => regHandler(event)} className={style.regForm}>
-            <input type="text" value={name} onChange={(event) => {setName(event.target.value);}} required className={style.input} placeholder='name'/>
-            <input type="text" value={email} onChange={(event) => {setEmail(event.target.value);}} required className={style.input} placeholder='email'/>
-            <input type="password" value={password} onChange={(event) => {setPassword(event.target.value);}} required className={style.input} placeholder='password'/>
-            <button type="submit" className={style.button}>
-                REGISTRATION
-            </button>
-        </form>
+        <>
+            {statusInfo ? <p className="info">{statusInfo}</p> : null}
+            <form onSubmit={(event) => regHandler(event)} className={style.regForm}>
+                <input type="text" value={name} onChange={(event) => {setName(event.target.value);}} required className={style.input} placeholder='name'/>
+                <input type="text" value={email} onChange={(event) => {setEmail(event.target.value);}} required className={style.input} placeholder='email'/>
+                <input type="password" value={password} onChange={(event) => {setPassword(event.target.value);}} required className={style.input} placeholder='password'/>
+                <button type="submit" className={style.button}>
+                    REGISTRATION
+                </button>
+            </form>
+        </>
     );
 }
 
