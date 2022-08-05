@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import style from './Authentication.module.css'
+import {checkAuth} from "../../redux/actions/checkSession.action";
 
 function Authentication() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [statusInfo, setStatusInfo] = useState("");
+
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(checkAuth());
+    }, [dispatch]);
 
     const navigate = useNavigate();
 
-    function logHandler(event: React.FormEvent) {
+    function logHandler(event) {
         event.preventDefault();
         axios
             .post(
@@ -25,6 +31,7 @@ function Authentication() {
                 if (response.data.message) {
                     setStatusInfo(response.data.message);
                 } else {
+                    dispatch(checkAuth());
                     navigate("/users");
                 }
             });

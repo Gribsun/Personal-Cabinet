@@ -7,6 +7,9 @@ router
     .get(async (req, res) => {
         try {
             const contacts = await Contact.findAll({
+                where: {
+                    userId: res.locals.userId
+                },
                 attributes: ['id', 'name', 'gender', 'phone', 'info'],
                 order: [["createdAt", "DESC"]],
             });
@@ -25,7 +28,8 @@ router
                     name,
                     gender,
                     phone,
-                    info
+                    info,
+                    userId: res.locals.userId
                 });
 
                 return res.status(201).json(newContact);
