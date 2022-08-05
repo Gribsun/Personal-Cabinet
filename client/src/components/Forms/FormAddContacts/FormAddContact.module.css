@@ -1,0 +1,19 @@
+.formAddContact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formButton {
+    width: 150px;
+    height: 50px;
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.inputAddContact {
+    border: 1px solid black;
+    width: 200px;
+    height: 30px;
+}

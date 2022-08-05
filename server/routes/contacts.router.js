@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const { Contact } = require("../db/models");
+const {where, CIDR} = require("sequelize");
 
 router
     .route("/")
@@ -37,6 +38,47 @@ router
             } catch (err) {
                 console.log(err);
             }
-    });
+    })
+
+router
+    .route("/:id")
+    .get(async (req, res) => {
+        try {
+            const {id} = req.params;
+            const findContact = await Contact.findOne({ where: { id } });
+            res.json(findContact);
+        } catch (err) {
+            console.log(err);
+        }
+    })
+    .put(async (req, res) => {
+        try {
+            const {id} = req.params;
+            const {name, gender, phone, info} = req.body;
+
+            await Contact.update(
+                { name, gender, phone, info },
+                { where: { id } }
+            );
+
+            const modifiedContact = await Contact.findOne({ where: { id } });
+
+            res.json(modifiedContact);
+
+        } catch (err) {
+            console.log(err);
+        }
+    })
+    .delete(async (req, res) => {
+        try {
+            const {id} = req.params;
+
+            await Contact.destroy({ where: { id } });
+            await res.sendStatus(200);
+
+        } catch (err) {
+            console.log(err);
+        }
+    })
 
 module.exports = router;
